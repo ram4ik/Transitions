@@ -9,8 +9,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var show = false
     var body: some View {
-        Text("Hello World")
+        VStack {
+            Spacer()
+            
+            if show {
+                LabelView()
+                    .animation(.easeInOut(duration: 1.0))
+                    .transition(.opacity)
+            }
+            
+            Spacer()
+            
+            Button("Animate") {
+                self.show.toggle()
+            }.padding(20)
+        }
+    }
+}
+
+struct LabelView: View {
+    var body: some View {
+        Text("Hi there!")
+            .padding(10)
+            .font(.title)
+            .foregroundColor(.white)
+            .background(RoundedRectangle(cornerRadius: 8).fill(Color.green).shadow(color: .gray, radius: 3))
     }
 }
 
